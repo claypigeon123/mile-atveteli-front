@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Form } from 'react-bootstrap';
+import { Table, Form, Button } from 'react-bootstrap';
 import { Loading } from './Fragments/Loading';
 import { withAlert } from 'react-alert';
 import { MdEdit, MdDeleteForever } from 'react-icons/md';
@@ -18,13 +18,19 @@ export class Users extends Component {
 
             loading: true,
 
-            creating: true,
+            creating: false,
             editing: null,
             noConnection: false
         }
     }
 
-    componentDidMount() {
+    fetchData = () => {
+        this.setState({
+            ugyintezok: [],
+            noConnection: false,
+            loading: true
+        });
+
         axios.get('http://localhost:3200/api/users/').then(res => {
             this.setState({ ugyintezok: res.data });
         }).catch(err => {
@@ -36,6 +42,10 @@ export class Users extends Component {
         });
     }
 
+    componentDidMount() {
+        this.fetchData();
+    }
+
     showUgyintezok = () => {
         return this.state.ugyintezok.map((ugyintezo, index) => {
             return (
@@ -44,12 +54,30 @@ export class Users extends Component {
                     <td> {ugyintezo.email} </td>
                     <td> +36 {ugyintezo.tel} </td>
                     <td>
-                        <MdEdit style={{cursor: 'pointer'}} onClick={() => {  }} size="22" className="text-warning mr-2" />
-                        <MdDeleteForever style={{cursor: 'pointer'}} onClick={() => {  }} size="25" className="text-danger" />
+                        <MdEdit style={{cursor: 'pointer'}} onClick={() => { this.closeModal(); this.setState({ editing: ugyintezo }) }} size="22" className="text-warning mr-2" />
+                        <MdDeleteForever style={{cursor: 'pointer'}} onClick={() => { this.deleteUser(ugyintezo.id) }} size="25" className="text-danger" />
                     </td>
                 </tr>
             );
         });
+    }
+
+    deleteUser = (id) => {
+        axios.delete(`http://localhost:3200/api/users/${id}`).then(res => {
+            this.props.alert.success("Ügyintéző törölve!");
+            this.fetchData();
+        }).catch(err => {
+            console.log(err);
+            this.props.alert.error("Hiba az ügyintéző törlésekor!");
+        });
+    }
+
+    closeModal = () => {
+        this.setState({
+            creating: false,
+            editing: null,
+        });
+        this.fetchData();
     }
 
     render() {
@@ -87,8 +115,13 @@ export class Users extends Component {
                         {this.showUgyintezok()}
                     </tbody>
                 </Table>
-                {this.state.editing !== null ? <UserForm mode="edit" user={this.state.editing} /> : <React.Fragment />}
-                {this.state.creating === true ? <UserForm mode="create" /> : <React.Fragment />}
+                {this.state.editing !== null || this.state.creating === true ? <React.Fragment /> : 
+                <React.Fragment>
+                    <Button onClick={(e) => { this.setState({ creating: true }) }} variant="success">Új Ügyintéző</Button>
+                </React.Fragment>
+                }
+                {this.state.editing !== null ? <UserForm mode="edit" user={this.state.editing} close={this.closeModal} /> : <React.Fragment />}
+                {this.state.creating === true ? <UserForm mode="create" close={this.closeModal} /> : <React.Fragment />}
             </div>
         )
     }
