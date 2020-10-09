@@ -5,7 +5,7 @@ import { withAlert } from 'react-alert';
 import { MdEdit, MdDeleteForever } from 'react-icons/md';
 import axios from 'axios';
 
-import Error from './Fragments/Error'
+import { Error } from './Fragments/Error'
 import UserForm from './Fragments/UserForm';
 
 export class Users extends Component {

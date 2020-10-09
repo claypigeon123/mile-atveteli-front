@@ -5,7 +5,7 @@ import Toggle from 'react-toggle';
 import axios from 'axios';
 
 import { Loading } from './Fragments/Loading';
-import Error from './Fragments/Error'
+import { Error } from './Fragments/Error'
 
 export class ExcelForm extends Component {
 
