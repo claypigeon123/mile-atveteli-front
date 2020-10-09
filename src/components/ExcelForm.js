@@ -86,20 +86,21 @@ export class ExcelForm extends Component {
             return (
                 <Form.Group key={index}>
                     <Form.Row>
+                        {index + 1}
                         <Col lg="2">
-                            <Form.Label>Cikkszám</Form.Label>
-                            <Form.Control placeholder="Cikkszám" value={termek.cikkszam} onChange={(e) => { this.termekChanged(e, index, 0) }} />
+                            <Form.Label className="small">Cikkszám</Form.Label>
+                            <Form.Control size="sm" placeholder="Cikkszám" value={termek.cikkszam} onChange={(e) => { this.termekChanged(e, index, 0) }} />
                         </Col>
                         <Col lg>
-                            <Form.Label>Megnevezés</Form.Label>
-                            <Form.Control placeholder="Megnevezés" value={termek.megnevezes} onChange={(e) => { this.termekChanged(e, index, 1) }} />
+                            <Form.Label className="small">Megnevezés</Form.Label>
+                            <Form.Control size="sm" placeholder="Megnevezés" value={termek.megnevezes} onChange={(e) => { this.termekChanged(e, index, 1) }} />
                         </Col>
                         <Col lg="2">
-                            <Form.Label>Mennyiség</Form.Label>
-                            <Form.Control type="number" value={termek.mennyiseg} onChange={(e) => { this.termekChanged(e, index, 2) }} />
+                            <Form.Label className="small">Mennyiség</Form.Label>
+                            <Form.Control size="sm" type="number" value={termek.mennyiseg} onChange={(e) => { this.termekChanged(e, index, 2) }} />
                         </Col>
                         <Col lg="1" className="text-center mt-3" style={{alignSelf: 'flex-end'}}>
-                            <Button variant="danger" onClick={(e) => { this.deleteTermek(e, index) }} >Törlés</Button>
+                            <Button size="sm" variant="danger" onClick={(e) => { this.deleteTermek(e, index) }} >Törlés</Button>
                         </Col>
                     </Form.Row>
                 </Form.Group>
@@ -108,7 +109,13 @@ export class ExcelForm extends Component {
     }
 
     displayUgyintezok = () => {
-        return this.state.ugyintezok.map((ugyintezo, index) => {
+        let list = [].concat(this.state.ugyintezok);
+        list.sort((a, b) => {
+            if (a.name < b.name) return -1;
+            if (a.name === b.name) return 0;
+            if (a.name > b.name) return 1;
+        });
+        return list.map((ugyintezo, index) => {
             return (
                 <option value={ugyintezo.id} key={index}>
                     {ugyintezo.name}
@@ -133,6 +140,10 @@ export class ExcelForm extends Component {
         }
         if (this.state.visszaruAjanlat.length === 0) {
             this.props.alert.error("Visszáru ajánlat nincs megadva!");
+            return;
+        }
+        if (this.state.termekek.length < 1) {
+            this.props.alert.error("Legalább 1 terméket meg kell adni!");
             return;
         }
         const data = {

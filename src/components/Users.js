@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Table, Form, Button } from 'react-bootstrap';
-import { Loading } from './Fragments/Loading';
 import { withAlert } from 'react-alert';
 import { MdEdit, MdDeleteForever } from 'react-icons/md';
 import axios from 'axios';
 
+import { Loading } from './Fragments/Loading';
 import { Error } from './Fragments/Error'
 import UserForm from './Fragments/UserForm';
 
