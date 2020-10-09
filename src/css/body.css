@@ -4,3 +4,15 @@ body {
     font-family: 'Poppins', sans-serif !important;
     background-color: rgb(29, 109, 49);
 }
+
+.milegreen {
+    color: #23c423 !important;
+}
+
+.milegreen-button {
+    background-color: #23c423 !important;
+}
+
+.milegreen-title {
+    color: #00ff00 !important;
+}

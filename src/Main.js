@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { withAlert } from 'react-alert';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/body.css';
-import Menu from './components/Menu.js';
-import Home from './components/Home.js';
+import "react-toggle/style.css"
+import Header from './components/Header.js';
+import ExcelForm from './components/ExcelForm.js';
 import Users from './components/Users.js';
+import Settings from './components/Settings';
 
 export class Main extends Component {
     render() {
@@ -12,12 +16,13 @@ export class Main extends Component {
             <Router>
                 <div className="container-fluid p-0">
                     <div className="container bg-dark p-0 border border-white rounded shadow">
-                        <Menu />
+                        <Header />
                     </div>
                     
-                    <div className="container bg-dark p-0 mt-5 text-white border border-white rounded shadow p-3">
-                        <Route exact path="/" render={(props) => <Home {...props} />} />
+                    <div className="container bg-dark mt-5 text-white border border-white rounded shadow p-4">
+                        <Route exact path="/" render={(props) => <ExcelForm {...props} />} />
                         <Route path="/users" render={(props) => <Users {...props} />} />
+                        <Route path="/settings" render={(props) => <Settings {...props} />} />
                     </div>
                 </div>
             </Router>
@@ -25,4 +30,4 @@ export class Main extends Component {
     }
 }
 
-export default Main;
+export default withAlert()(Main);
