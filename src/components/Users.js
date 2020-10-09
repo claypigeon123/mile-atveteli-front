@@ -4,6 +4,8 @@ import { Loading } from './Fragments/Loading';
 import { withAlert } from 'react-alert';
 import { MdEdit, MdDeleteForever } from 'react-icons/md';
 import axios from 'axios';
+
+import Error from './Fragments/Error'
 import UserForm from './Fragments/UserForm';
 
 export class Users extends Component {
@@ -17,7 +19,8 @@ export class Users extends Component {
             loading: true,
 
             creating: true,
-            editing: null
+            editing: null,
+            noConnection: false
         }
     }
 
@@ -26,7 +29,8 @@ export class Users extends Component {
             this.setState({ ugyintezok: res.data });
         }).catch(err => {
             console.log(err);
-            this.props.alert.error("Hiba az ügyintézők lekérésekor!");
+            this.props.alert.error("Nincs kapcsolat a szerverrel!");
+            this.setState({ noConnection: true });
         }).then(() => {
             this.setState({ loading: false });
         });
@@ -51,11 +55,20 @@ export class Users extends Component {
     render() {
         if (this.state.loading) {
             return (
-                <div>
+                <React.Fragment>
                     <Loading message="Betöltés" />
-                </div>
+                </React.Fragment>
             );
         }
+
+        if (this.state.noConnection) {
+            return (
+                <React.Fragment>
+                    <Error />
+                </React.Fragment>
+            );
+        }
+
         return (
             <div>
                 <Form.Group>

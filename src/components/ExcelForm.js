@@ -5,6 +5,7 @@ import Toggle from 'react-toggle';
 import axios from 'axios';
 
 import { Loading } from './Fragments/Loading';
+import Error from './Fragments/Error'
 
 export class ExcelForm extends Component {
 
@@ -23,7 +24,8 @@ export class ExcelForm extends Component {
 
             ugyintezok: [],
             loading: true,
-            resetToggle: false
+            resetToggle: false,
+            noConnection: false
         };
     }
 
@@ -32,7 +34,8 @@ export class ExcelForm extends Component {
             this.setState({ ugyintezok: res.data });
         }).catch(err => {
             console.log(err);
-            this.props.alert.error("Hiba az ügyintézők lekérésekor!");
+            this.props.alert.error("Nincs kapcsolat a szerverrel!");
+            this.setState({noConnection: true});
         }).then(() => {
             this.setState({ loading: false })
         });
@@ -178,9 +181,17 @@ export class ExcelForm extends Component {
     render() {
         if (this.state.loading) {
             return (
-                <div>
+                <React.Fragment>
                     <Loading message="Betöltés" />
-                </div>
+                </React.Fragment>
+            );
+        }
+
+        if (this.state.noConnection) {
+            return (
+                <React.Fragment>
+                    <Error />
+                </React.Fragment>
             );
         }
 
