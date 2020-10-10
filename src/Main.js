@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { withAlert } from 'react-alert';
+import axios from 'axios';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/body.css';
@@ -9,6 +10,8 @@ import Header from './components/Header.js';
 import ExcelForm from './components/ExcelForm.js';
 import Users from './components/Users.js';
 import Settings from './components/Settings';
+
+axios.defaults.baseURL = process.env.REACT_APP_API_ENDPOINT;
 
 export class Main extends Component {
     render() {

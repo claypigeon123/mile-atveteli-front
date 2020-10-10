@@ -31,7 +31,7 @@ export class Users extends Component {
             loading: true
         });
 
-        axios.get('http://localhost:3200/api/users/').then(res => {
+        axios.get('/api/users/').then(res => {
             this.setState({ ugyintezok: res.data });
         }).catch(err => {
             console.log(err);
@@ -63,7 +63,7 @@ export class Users extends Component {
     }
 
     deleteUser = (id) => {
-        axios.delete(`http://localhost:3200/api/users/${id}`).then(res => {
+        axios.delete(`/api/users/${id}`).then(res => {
             this.props.alert.success("Ügyintéző törölve!");
             this.fetchData();
         }).catch(err => {

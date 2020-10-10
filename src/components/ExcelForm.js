@@ -30,7 +30,7 @@ export class ExcelForm extends Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:3200/api/users/").then(res => {
+        axios.get("/api/users/").then(res => {
             this.setState({ ugyintezok: res.data });
         }).catch(err => {
             console.log(err);
@@ -157,7 +157,7 @@ export class ExcelForm extends Component {
             megjegyzes: this.state.megjegyzes,
         }
 
-        axios.post('http://localhost:3200/api/atveteli/create', data, { responseType: 'arraybuffer' }).then(res => {
+        axios.post('/api/atveteli/create', data, { responseType: 'arraybuffer' }).then(res => {
             console.log(res);
             const url = window.URL.createObjectURL(new Blob([res.data]));
             const link = document.createElement('a');

@@ -74,7 +74,7 @@ export class UserForm extends Component {
                 email: this.state.email,
                 tel: this.state.tel.substring(4)
             }
-            axios.post('http://localhost:3200/api/users/', data).then(res => {
+            axios.post('/api/users/', data).then(res => {
                 this.props.alert.success("Ügyintéző létrehozva!");
                 this.props.close();
             }).catch(err => {
@@ -90,7 +90,7 @@ export class UserForm extends Component {
             email: this.state.email,
             tel: this.state.tel.substring(4)
         };
-        axios.put(`http://localhost:3200/api/users/${this.props.user.id}`, data).then(res => {
+        axios.put(`/api/users/${this.props.user.id}`, data).then(res => {
             this.props.alert.success("Ügyintéző módosítva!");
             this.props.close();
         }).catch(err => {

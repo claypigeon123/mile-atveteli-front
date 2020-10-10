@@ -26,7 +26,7 @@ export class Settings extends Component {
             noConnection: false
         });
 
-        axios.get('http://localhost:3200/api/atveteli/').then(res => {
+        axios.get('/api/atveteli/').then(res => {
             this.setState({
                 counter: res.data
             });
@@ -44,7 +44,7 @@ export class Settings extends Component {
     }
 
     reset = () => {
-        axios.post('http://localhost:3200/api/atveteli/reset').then(res => {
+        axios.post('/api/atveteli/reset').then(res => {
             this.props.alert.success("Számláló alaphelyzetbe állítva!");
             this.fetchData();
         }).catch(err => {
