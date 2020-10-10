@@ -112,9 +112,8 @@ export class ExcelForm extends Component {
         let list = [].concat(this.state.ugyintezok);
         list.sort((a, b) => {
             if (a.name < b.name) return -1;
-            if (a.name === b.name) return 0;
-            if (a.name > b.name) return 1;
-            return null;
+            else if (a.name === b.name) return 0;
+            else return 1;
         });
         return list.map((ugyintezo, index) => {
             return (
