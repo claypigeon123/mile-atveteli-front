@@ -114,6 +114,7 @@ export class ExcelForm extends Component {
             if (a.name < b.name) return -1;
             if (a.name === b.name) return 0;
             if (a.name > b.name) return 1;
+            return null;
         });
         return list.map((ugyintezo, index) => {
             return (
