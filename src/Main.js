@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Switch, Route, Redirect, BrowserRouter as Router } from 'react-router-dom';
 import { withAlert } from 'react-alert';
 import axios from 'axios';
 
@@ -22,11 +22,15 @@ export class Main extends Component {
                         <Header />
                     </div>
                     
-                    <div className="container bg-dark mt-5 text-white border border-white rounded shadow p-4">
-                        <Route exact path="/" render={(props) => <ExcelForm {...props} />} />
-                        <Route path="/users" render={(props) => <Users {...props} />} />
-                        <Route path="/settings" render={(props) => <Settings {...props} />} />
-                    </div>
+                    <Switch>
+                        <div className="container bg-dark mt-5 text-white border border-white rounded shadow p-4">
+                            <Route path="/users" render={(props) => <Users {...props} />} />
+                            <Route path="/settings" render={(props) => <Settings {...props} />} />
+                            <Route exact path="/" render={(props) => <ExcelForm {...props} />} />
+
+                            <Redirect to="/"/>
+                        </div>
+                    </Switch>
                 </div>
             </Router>
         )
