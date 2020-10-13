@@ -27,6 +27,8 @@ export class ExcelForm extends Component {
             resetToggle: false,
             noConnection: false
         };
+
+        this.submit = this.submit.bind(this);
     }
 
     componentDidMount() {
@@ -127,7 +129,7 @@ export class ExcelForm extends Component {
         });
     }
 
-    submit = (e) => {
+    submit(e) {
         e.preventDefault();
         if (this.state.type === "N/A") {
             this.props.alert.removeAll();

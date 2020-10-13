@@ -13,7 +13,9 @@ export class UserForm extends Component {
             name: "",
             email: "",
             tel: ""
-        }
+        };
+
+        this.submit = this.submit.bind(this);
     }
 
     fetchData = () => {
@@ -71,7 +73,7 @@ export class UserForm extends Component {
         );
     }
 
-    submit = (e) => {
+    submit(e) {
         e.preventDefault();
         if (this.state.name.length === 0 || this.state.email.length === 0 || this.state.tel.length === 0) {
             this.props.alert.removeAll();
