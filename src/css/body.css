@@ -16,3 +16,7 @@ body {
 .milegreen-title {
     color: #00ff00 !important;
 }
+
+.active-menu {
+    background-color: #292929 !important;
+}

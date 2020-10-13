@@ -22,15 +22,15 @@ export class Main extends Component {
                         <Header />
                     </div>
                     
-                    <Switch>
-                        <div className="container bg-dark mt-5 text-white border border-white rounded shadow p-4">
+                    <div className="container bg-dark mt-5 text-white border border-white rounded shadow p-4">
+                        <Switch>
                             <Route path="/users" render={(props) => <Users {...props} />} />
                             <Route path="/settings" render={(props) => <Settings {...props} />} />
                             <Route exact path="/" render={(props) => <ExcelForm {...props} />} />
 
                             <Redirect to="/"/>
-                        </div>
-                    </Switch>
+                        </Switch>
+                    </div>
                 </div>
             </Router>
         )

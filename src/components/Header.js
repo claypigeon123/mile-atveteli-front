@@ -14,11 +14,11 @@ export class Menu extends Component {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link as={NavLink} activeStyle={{borderLeft: '3px solid green'}} activeClassName="rounded milegreen" exact to="/">Űrlap</Nav.Link>
-                        <Nav.Link as={NavLink} activeStyle={{borderLeft: '3px solid green'}} activeClassName="rounded milegreen" to="/users">Ügyintézők</Nav.Link>
+                        <Nav.Link as={NavLink} activeStyle={{borderLeft: '5px solid green'}} activeClassName="active-menu rounded milegreen" exact to="/">Űrlap</Nav.Link>
+                        <Nav.Link as={NavLink} activeStyle={{borderLeft: '5px solid green'}} activeClassName="active-menu rounded milegreen" to="/users">Ügyintézők</Nav.Link>
                     </Nav>
                     <Nav>
-                        <Nav.Link as={NavLink} className="text-danger" activeStyle={{borderLeft: '3px solid red'}} activeClassName="rounded" to="/settings">Beállítások</Nav.Link>
+                        <Nav.Link as={NavLink} className="text-danger" activeStyle={{borderLeft: '5px solid red'}} activeClassName="active-menu rounded" to="/settings">Beállítások</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

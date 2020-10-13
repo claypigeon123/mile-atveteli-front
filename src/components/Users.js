@@ -24,6 +24,12 @@ export class Users extends Component {
         }
     }
 
+    setNoConnection = () => {
+        this.setState({
+            noConnection: true
+        });
+    }
+
     fetchData = () => {
         this.setState({
             ugyintezok: [],
@@ -49,13 +55,17 @@ export class Users extends Component {
     showUgyintezok = () => {
         return this.state.ugyintezok.map((ugyintezo, index) => {
             return (
-                <tr key={index}>
+                <tr key={index} className={this.state.editing === ugyintezo.id ? "bg-warning text-dark font-weight-bold" : " "}>
                     <td> {ugyintezo.name} </td>
                     <td> {ugyintezo.email} </td>
                     <td> +36 {ugyintezo.tel} </td>
                     <td>
-                        <MdEdit style={{cursor: 'pointer'}} onClick={() => { this.closeModal(); this.setState({ editing: ugyintezo }) }} size="22" className="text-warning mr-2" />
-                        <MdDeleteForever style={{cursor: 'pointer'}} onClick={() => { this.deleteUser(ugyintezo.id) }} size="25" className="text-danger" />
+                        { this.state.editing === ugyintezo.id ? <React.Fragment /> : 
+                        <React.Fragment>
+                            <MdEdit style={{cursor: 'pointer'}} onClick={() => { this.closeModal(); this.setState({ editing: ugyintezo.id }) }} size="22" className="text-warning mr-2" />
+                            <MdDeleteForever style={{cursor: 'pointer'}} onClick={() => { this.deleteUser(ugyintezo.id) }} size="25" className="text-danger" />
+                        </React.Fragment>
+                        }
                     </td>
                 </tr>
             );
@@ -120,7 +130,7 @@ export class Users extends Component {
                     <Button onClick={(e) => { this.setState({ creating: true }) }} variant="success">Új Ügyintéző</Button>
                 </React.Fragment>
                 }
-                {this.state.editing !== null ? <UserForm mode="edit" user={this.state.editing} close={this.closeModal} /> : <React.Fragment />}
+                {this.state.editing !== null ? <UserForm mode="edit" user={this.state.editing} close={this.closeModal} setNoConnection={this.setNoConnection} /> : <React.Fragment />}
                 {this.state.creating === true ? <UserForm mode="create" close={this.closeModal} /> : <React.Fragment />}
             </div>
         )

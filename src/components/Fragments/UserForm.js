@@ -16,13 +16,23 @@ export class UserForm extends Component {
         }
     }
 
+    fetchData = () => {
+        axios.get(`/api/users/${this.props.user}`).then(res => {
+            this.setState({
+                name: res.data.name,
+                email: res.data.email,
+                tel: "+36 " + res.data.tel
+            });
+        }).catch(err => {
+            console.log(err);
+            this.props.alert.error("Hiba a szerverrel való kommunikáció során!");
+            this.props.setNoConnection();
+        });
+    }
+
     componentDidMount() {
         if (this.props.mode === "edit") {
-            this.setState({
-                name: this.props.user.name,
-                email: this.props.user.email,
-                tel: "+36 " + this.props.user.tel,
-            });
+            this.fetchData();
         }
     }
 
@@ -85,12 +95,12 @@ export class UserForm extends Component {
         }
         // Editing
         const data = {
-            id: this.props.user.id,
+            id: this.props.user,
             name: this.state.name,
             email: this.state.email,
             tel: this.state.tel.substring(4)
         };
-        axios.put(`/api/users/${this.props.user.id}`, data).then(res => {
+        axios.put(`/api/users/${this.props.user}`, data).then(res => {
             this.props.alert.success("Ügyintéző módosítva!");
             this.props.close();
         }).catch(err => {
@@ -103,6 +113,9 @@ export class UserForm extends Component {
         return (
             <Form onSubmit={this.submit} className="px-5 py-2 border rounded shadow">
                 <Form.Group className="mt-3">
+                    <Form.Label className="milegreen-title h3">{ this.props.mode === "edit" ? "Szerkesztés" : "Létrehozás" }</Form.Label>
+                </Form.Group>
+                <Form.Group>
                     <Form.Label className="milegreen-title h6"><span className="text-danger">*</span>Név</Form.Label>
                     <Form.Control size="sm" value={this.state.name} onChange={(e) => { this.setState({ name: e.target.value }) }} />
                 </Form.Group>
