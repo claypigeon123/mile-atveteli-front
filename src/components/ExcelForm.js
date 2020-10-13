@@ -92,15 +92,15 @@ export class ExcelForm extends Component {
                         {index + 1}
                         <Col lg="2">
                             <Form.Label className="small">Cikkszám</Form.Label>
-                            <Form.Control size="sm" placeholder="Cikkszám" value={termek.cikkszam} onChange={(e) => { this.termekChanged(e, index, 0) }} />
+                            <Form.Control className="mile-textbox" size="sm" placeholder="Cikkszám" value={termek.cikkszam} onChange={(e) => { this.termekChanged(e, index, 0) }} />
                         </Col>
                         <Col lg>
                             <Form.Label className="small">Megnevezés</Form.Label>
-                            <Form.Control size="sm" placeholder="Megnevezés" value={termek.megnevezes} onChange={(e) => { this.termekChanged(e, index, 1) }} />
+                            <Form.Control className="mile-textbox" size="sm" placeholder="Megnevezés" value={termek.megnevezes} onChange={(e) => { this.termekChanged(e, index, 1) }} />
                         </Col>
                         <Col lg="2">
                             <Form.Label className="small">Mennyiség</Form.Label>
-                            <Form.Control size="sm" type="number" value={termek.mennyiseg} onChange={(e) => { this.termekChanged(e, index, 2) }} />
+                            <Form.Control className="mile-textbox" size="sm" type="number" value={termek.mennyiseg} onChange={(e) => { this.termekChanged(e, index, 2) }} />
                         </Col>
                         <Col lg="1" className="text-center mt-3" style={{alignSelf: 'flex-end'}}>
                             <Button size="sm" variant="danger" onClick={(e) => { this.deleteTermek(e, index) }} >Törlés</Button>
@@ -233,7 +233,7 @@ export class ExcelForm extends Component {
                         <Form.Row>
                             <Col lg>
                                 <Form.Label className="h6 milegreen"><span className="text-danger">*</span>Típus</Form.Label>
-                                <Form.Control as="select" value={this.state.type} onChange={(e) => { this.setState({type: e.target.value}) }}>
+                                <Form.Control className="mile-textbox" as="select" value={this.state.type} onChange={(e) => { this.setState({type: e.target.value}) }}>
                                     <option value="N/A">N/A</option>
                                     <option value="Átvételi Elismervény">Átvételi Elismervény</option>
                                     <option value="Hiánypótlás">Hiánypótlás</option>
@@ -244,7 +244,7 @@ export class ExcelForm extends Component {
                             </Col>
                             <Col lg>
                                 <Form.Label className="h6 milegreen"><span className="text-danger">*</span>Ügyintéző</Form.Label>
-                                <Form.Control as="select" value={this.state.ugyintezo} onChange={(e) => { this.setState({ugyintezo: e.target.value}) }}>
+                                <Form.Control className="mile-textbox" as="select" value={this.state.ugyintezo} onChange={(e) => { this.setState({ugyintezo: e.target.value}) }}>
                                     <option value="N/A">N/A</option>
                                     {this.displayUgyintezok()}
                                 </Form.Control>
@@ -253,19 +253,19 @@ export class ExcelForm extends Component {
                     </Form.Group>
                     <Form.Group>
                         <Form.Label className="h6 milegreen"><span className="text-danger">*</span>Eredeti Bizonylat</Form.Label>
-                        <Form.Control type="input" placeholder="Eredeti Bizonylat" value={this.state.eredetiBizonylat} onChange={(e) => { this.setState({eredetiBizonylat: e.target.value}) }} />
+                        <Form.Control className="mile-textbox" type="input" placeholder="Eredeti Bizonylat" value={this.state.eredetiBizonylat} onChange={(e) => { this.setState({eredetiBizonylat: e.target.value}) }} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label className="h6 milegreen"><span className="text-danger">*</span>Visszáru Ajánlat</Form.Label>
-                        <Form.Control type="input" placeholder="Visszáru Ajánlat" value={this.state.visszaruAjanlat} onChange={(e) => { this.setState({visszaruAjanlat: e.target.value}) }} />
+                        <Form.Control className="mile-textbox" type="input" placeholder="Visszáru Ajánlat" value={this.state.visszaruAjanlat} onChange={(e) => { this.setState({visszaruAjanlat: e.target.value}) }} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label className="h6 milegreen">Átvevő Neve</Form.Label>
-                        <Form.Control type="input" placeholder="Átvevő Neve" value={this.state.atvevoNeve} onChange={(e) => { this.setState({atvevoNeve: e.target.value}) }} />
+                        <Form.Control className="mile-textbox" type="input" placeholder="Átvevő Neve" value={this.state.atvevoNeve} onChange={(e) => { this.setState({atvevoNeve: e.target.value}) }} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label className="h6 milegreen">Szállítási Cím</Form.Label>
-                        <Form.Control type="input" placeholder="Szállítási Cím" value={this.state.szallitasiCim} onChange={(e) => { this.setState({szallitasiCim: e.target.value}) }} />
+                        <Form.Control className="mile-textbox" type="input" placeholder="Szállítási Cím" value={this.state.szallitasiCim} onChange={(e) => { this.setState({szallitasiCim: e.target.value}) }} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label className="h6 milegreen">Termékek</Form.Label>
@@ -282,7 +282,7 @@ export class ExcelForm extends Component {
                     </Form.Group>
                     <Form.Group>
                         <Form.Label className="h6 milegreen">Megjegyzés</Form.Label>
-                        <Form.Control as="textarea" rows="5" style={{resize: 'none'}} value={this.state.megjegyzes} onChange={(e) => { this.setState({megjegyzes: e.target.value}) }} />
+                        <Form.Control className="mile-textbox" as="textarea" rows="5" style={{resize: 'none'}} value={this.state.megjegyzes} onChange={(e) => { this.setState({megjegyzes: e.target.value}) }} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Row>

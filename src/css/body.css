@@ -20,3 +20,13 @@ body {
 .active-menu {
     background-color: #292929 !important;
 }
+
+.mile-textbox {
+    background-color: #2b2b2b !important;
+    color: rgb(235, 235, 235);
+    text-decoration-color: none;
+}
+
+.mile-textbox:focus {
+    color: rgb(255, 255, 255);
+}

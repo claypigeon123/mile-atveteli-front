@@ -123,15 +123,15 @@ export class UserForm extends Component {
                 </Form.Group>
                 <Form.Group>
                     <Form.Label className="milegreen-title h6"><span className="text-danger">*</span>Név</Form.Label>
-                    <Form.Control size="sm" value={this.state.name} onChange={(e) => { this.setState({ name: e.target.value }) }} />
+                    <Form.Control className="mile-textbox" size="sm" value={this.state.name} onChange={(e) => { this.setState({ name: e.target.value }) }} />
                 </Form.Group>
                 <Form.Group>
                     <Form.Label className="milegreen-title h6"><span className="text-danger">*</span>Email</Form.Label>
-                    <Form.Control size="sm" value={this.state.email} onChange={(e) => { this.setState({ email: e.target.value }) }} />
+                    <Form.Control className="mile-textbox" size="sm" value={this.state.email} onChange={(e) => { this.setState({ email: e.target.value }) }} />
                 </Form.Group>
                 <Form.Group>
                     <Form.Label className="milegreen-title h6"><span className="text-danger">*</span>Telefon</Form.Label>
-                    <Form.Control as={MaskedInput} mask="+36 (11) 111-11-11" size="sm" value={this.state.tel} onChange={(e) => { this.setState({ tel: e.target.value }) }} />
+                    <Form.Control className="mile-textbox" as={MaskedInput} mask="+36 (11) 111-11-11" size="sm" value={this.state.tel} onChange={(e) => { this.setState({ tel: e.target.value }) }} />
                 </Form.Group>
                 {this.renderButtons()}
             </Form>
