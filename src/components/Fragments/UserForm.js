@@ -25,6 +25,7 @@ export class UserForm extends Component {
             });
         }).catch(err => {
             console.log(err);
+            this.props.alert.removeAll();
             this.props.alert.error("Hiba a szerverrel való kommunikáció során!");
             this.props.setNoConnection();
         });
@@ -73,6 +74,7 @@ export class UserForm extends Component {
     submit = (e) => {
         e.preventDefault();
         if (this.state.name.length === 0 || this.state.email.length === 0 || this.state.tel.length === 0) {
+            this.props.alert.removeAll();
             this.props.alert.error("Minden mezőt ki kell tölteni!");
             return;
         }
@@ -85,10 +87,12 @@ export class UserForm extends Component {
                 tel: this.state.tel.substring(4)
             }
             axios.post('/api/users/', data).then(res => {
+                this.props.alert.removeAll();
                 this.props.alert.success("Ügyintéző létrehozva!");
                 this.props.close();
             }).catch(err => {
                 console.log(err);
+                this.props.alert.removeAll();
                 this.props.alert.error("Hiba az ügyintéző létrehozásakor!");
             });
             return;
@@ -101,10 +105,12 @@ export class UserForm extends Component {
             tel: this.state.tel.substring(4)
         };
         axios.put(`/api/users/${this.props.user}`, data).then(res => {
+            this.props.alert.removeAll();
             this.props.alert.success("Ügyintéző módosítva!");
             this.props.close();
         }).catch(err => {
             console.log(err);
+            this.props.alert.removeAll();
             this.props.alert.error("Hiba az ügyintéző módosításakor!");
         });
     }

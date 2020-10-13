@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 
-export const Error = (props) => {
+export const Error = () => {
     return (
         <div className="text-center text-danger">
             <Row>

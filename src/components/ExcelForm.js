@@ -30,10 +30,12 @@ export class ExcelForm extends Component {
     }
 
     componentDidMount() {
+        this.props.alert.removeAll();
         axios.get("/api/users/").then(res => {
             this.setState({ ugyintezok: res.data });
         }).catch(err => {
             console.log(err);
+            this.props.alert.removeAll();
             this.props.alert.error("Nincs kapcsolat a szerverrel!");
             this.setState({noConnection: true});
         }).then(() => {
@@ -63,6 +65,7 @@ export class ExcelForm extends Component {
 
     addTermek = (e) => {
         if (this.state.termekek.length === 10) {
+            this.props.alert.removeAll();
             this.props.alert.error("A maximális termékszám 10!");
             return;
         }
@@ -127,22 +130,27 @@ export class ExcelForm extends Component {
     submit = (e) => {
         e.preventDefault();
         if (this.state.type === "N/A") {
+            this.props.alert.removeAll();
             this.props.alert.error("Típus nincs kiválasztva!");
             return;
         }
         if (this.state.ugyintezo === "N/A") {
+            this.props.alert.removeAll();
             this.props.alert.error("Ügyintéző nincs kiválasztva!");
             return;
         }
         if (this.state.eredetiBizonylat.length === 0) {
+            this.props.alert.removeAll();
             this.props.alert.error("Eredeti bizonylat nincs megadva!");
             return;
         }
         if (this.state.visszaruAjanlat.length === 0) {
+            this.props.alert.removeAll();
             this.props.alert.error("Visszáru ajánlat nincs megadva!");
             return;
         }
         if (this.state.termekek.length < 1) {
+            this.props.alert.removeAll();
             this.props.alert.error("Legalább 1 terméket meg kell adni!");
             return;
         }
@@ -185,6 +193,7 @@ export class ExcelForm extends Component {
             megjegyzes: "",
         });
         if (isVisual) {
+            this.props.alert.removeAll();
             this.props.alert.success("Űrlap alaphelyzetbe állítva!");
         }
     }

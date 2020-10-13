@@ -41,6 +41,7 @@ export class Users extends Component {
             this.setState({ ugyintezok: res.data });
         }).catch(err => {
             console.log(err);
+            this.props.alert.removeAll();
             this.props.alert.error("Nincs kapcsolat a szerverrel!");
             this.setState({ noConnection: true });
         }).then(() => {
@@ -49,6 +50,7 @@ export class Users extends Component {
     }
 
     componentDidMount() {
+        this.props.alert.removeAll();
         this.fetchData();
     }
 
@@ -74,10 +76,12 @@ export class Users extends Component {
 
     deleteUser = (id) => {
         axios.delete(`/api/users/${id}`).then(res => {
+            this.props.alert.removeAll();
             this.props.alert.success("Ügyintéző törölve!");
             this.fetchData();
         }).catch(err => {
             console.log(err);
+            this.props.alert.removeAll();
             this.props.alert.error("Hiba az ügyintéző törlésekor!");
         });
     }

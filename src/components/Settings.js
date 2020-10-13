@@ -32,6 +32,7 @@ export class Settings extends Component {
             });
         }).catch(err => {
             console.log(err);
+            this.props.alert.removeAll();
             this.props.alert.error("Nincs kapcsolat a szerverrel!");
             this.setState({ noConnection: true });
         }).then(() => {
@@ -40,15 +41,18 @@ export class Settings extends Component {
     }
 
     componentDidMount() {
+        this.props.alert.removeAll();
         this.fetchData();
     }
 
     reset = () => {
         axios.post('/api/atveteli/reset').then(res => {
+            this.props.alert.removeAll();
             this.props.alert.success("Számláló alaphelyzetbe állítva!");
             this.fetchData();
         }).catch(err => {
             console.log(err);
+            this.props.alert.removeAll();
             this.props.alert.error("Számláló alaphelyzetbe állítása nem sikerült!");
         });
     }
