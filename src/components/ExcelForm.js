@@ -75,7 +75,7 @@ export class ExcelForm extends Component {
         termekek.push({
             cikkszam: "",
             megnevezes: "",
-            mennyiseg: 0
+            mennyiseg: 1
         });
         this.setState({ termekek: termekek });
     }
@@ -93,7 +93,7 @@ export class ExcelForm extends Component {
                     <Form.Row>
                         {index + 1}
                         <Col lg="2">
-                            <Form.Label className="small">Cikkszám</Form.Label>
+                            <Form.Label className="small"><span className="text-danger">*</span>Cikkszám</Form.Label>
                             <Form.Control className="mile-textbox" size="sm" placeholder="Cikkszám" value={termek.cikkszam} onChange={(e) => { this.termekChanged(e, index, 0) }} />
                         </Col>
                         <Col lg>
@@ -102,7 +102,7 @@ export class ExcelForm extends Component {
                         </Col>
                         <Col lg="2">
                             <Form.Label className="small">Mennyiség</Form.Label>
-                            <Form.Control className="mile-textbox" size="sm" type="number" value={termek.mennyiseg} onChange={(e) => { this.termekChanged(e, index, 2) }} />
+                            <Form.Control min="1" className="mile-textbox" size="sm" type="number" value={termek.mennyiseg} onChange={(e) => { this.termekChanged(e, index, 2) }} />
                         </Col>
                         <Col lg="1" className="text-center mt-3" style={{alignSelf: 'flex-end'}}>
                             <Button size="sm" variant="danger" onClick={(e) => { this.deleteTermek(e, index) }} >Törlés</Button>
@@ -131,6 +131,7 @@ export class ExcelForm extends Component {
 
     submit(e) {
         e.preventDefault();
+        // Checks
         if (this.state.type === "N/A") {
             this.props.alert.removeAll();
             this.props.alert.error("Típus nincs kiválasztva!");
@@ -156,6 +157,21 @@ export class ExcelForm extends Component {
             this.props.alert.error("Legalább 1 terméket meg kell adni!");
             return;
         }
+        let valid = true;
+        let termekek = [].concat(this.state.termekek);
+        for (let i = 0; i < termekek.length; i++) {
+            if (termekek[i].cikkszam.length < 1) {
+                valid = false;
+                break;
+            }
+        }
+        if (!valid) {
+            this.props.alert.removeAll();
+            this.props.alert.error("Termékek cikkszáma kötelező!");
+            return;
+        }
+
+        // Valid data, moving on to request
         const data = {
             type: this.state.type,
             atvevoNeve: this.state.atvevoNeve,

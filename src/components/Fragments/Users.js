@@ -4,9 +4,9 @@ import { withAlert } from 'react-alert';
 import { MdEdit, MdDeleteForever } from 'react-icons/md';
 import axios from 'axios';
 
-import { Loading } from './Fragments/Loading';
-import { Error } from './Fragments/Error'
-import UserForm from './Fragments/UserForm';
+import { Loading } from './Loading';
+import { Error } from './Error'
+import UserForm from './UserForm';
 
 export class Users extends Component {
 
@@ -98,7 +98,7 @@ export class Users extends Component {
         if (this.state.loading) {
             return (
                 <React.Fragment>
-                    <Loading message="Betöltés" />
+                    <Loading message="Ügyintézők Betöltése" />
                 </React.Fragment>
             );
         }
@@ -116,7 +116,7 @@ export class Users extends Component {
                 <Form.Group>
                     <Form.Label className="milegreen-title h4">Ügyintézők</Form.Label>
                 </Form.Group>
-                <Table size="sm" variant="dark" responsive striped bordered hover className="rounded mt-3">
+                <Table size="sm" variant="dark" responsive striped bordered hover className="rounded">
                     <thead>
                         <tr>
                             <th>Név</th>

@@ -4,8 +4,7 @@ import axios from 'axios';
 
 import { Header } from './components/Fragments/Header.js';
 import ExcelForm from './components/ExcelForm.js';
-import Users from './components/Users.js';
-import Settings from './components/Settings';
+import AdminOptions from './components/AdminOptions.js';
 
 axios.defaults.baseURL = process.env.REACT_APP_API_ENDPOINT;
 
@@ -19,8 +18,7 @@ export const Main = () => {
                 
                 <div className="container bg-dark mt-5 text-white border border-white rounded shadow p-4">
                     <Switch>
-                        <Route path="/users" render={(props) => <Users {...props} />} />
-                        <Route path="/settings" render={(props) => <Settings {...props} />} />
+                        <Route path="/settings" render={(props) => <AdminOptions {...props} />} />
                         <Route exact path="/" render={(props) => <ExcelForm {...props} />} />
 
                         <Redirect to="/"/>

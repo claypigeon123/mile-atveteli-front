@@ -3,8 +3,8 @@ import { Form, Col, Button } from 'react-bootstrap';
 import axios from 'axios';
 import { withAlert } from 'react-alert';
 
-import { Loading } from './Fragments/Loading';
-import { Error } from './Fragments/Error'
+import { Loading } from './Loading';
+import { Error } from './Error';
 
 export class Settings extends Component {
 
@@ -61,7 +61,7 @@ export class Settings extends Component {
         if (this.state.loading) {
             return (
                 <React.Fragment>
-                    <Loading message="Betöltés" />
+                    <Loading message="Beállítások Betöltése" />
                 </React.Fragment>
             );
         }
