@@ -50,7 +50,6 @@ export class Users extends Component {
     }
 
     componentDidMount() {
-        this.props.alert.removeAll();
         this.fetchData();
     }
 

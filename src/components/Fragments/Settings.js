@@ -41,7 +41,6 @@ export class Settings extends Component {
     }
 
     componentDidMount() {
-        this.props.alert.removeAll();
         this.fetchData();
     }
 
